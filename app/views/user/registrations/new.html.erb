@@ -4,6 +4,16 @@
   <%= render "user/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shisha_resistance %><br />
+    <%= f.select :shisha_resistance, User.shisha_resistances_i18n.invert %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -11,7 +21,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(英数字<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
