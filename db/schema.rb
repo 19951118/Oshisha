@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2023_11_04_070856) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.text "text"
+    t.text "body"
     t.integer "flavor_genre", null: false
     t.integer "player", default: 0, null: false
     t.string "location"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2023_11_04_070856) do
     t.integer "price"
     t.integer "flavor_capacity"
     t.string "flavor_maker"
-    t.string "smoking_level", null: false
-    t.string "smoking_taste_level", null: false
+    t.integer "smoking_level", null: false
+    t.integer "smoking_taste_level", null: false
     t.boolean "bottle_option", default: false, null: false
     t.boolean "nicotine", default: true, null: false
     t.string "star", null: false

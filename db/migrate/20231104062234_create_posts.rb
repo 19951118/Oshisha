@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
       t.integer :user_id,             null: false
       t.string :title,                null: false
-      t.text :text
+      t.text :body
       t.integer :flavor_genre,        null: false
       t.integer :player,              null: false, default: 0
       t.string :location
@@ -13,8 +13,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :price
       t.integer :flavor_capacity
       t.string :flavor_maker
-      t.string :smoking_level,        null: false
-      t.string :smoking_taste_level,  null: false
+      t.integer :smoking_level,       null: false
+      t.integer :smoking_taste_level, null: false
       t.boolean :bottle_option,       null: false, default: "false"
       t.boolean :nicotine,            null: false, default: "true"
       t.string :star,                 null: false

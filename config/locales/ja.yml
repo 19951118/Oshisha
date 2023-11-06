@@ -18,7 +18,7 @@ ja:
         spice: "スパイス"
         other: "その他"
       player:
-        store: "お店"
+        stores: "お店"
         myself: "自作"
       hms_genre:
         turkish: "ターキッシュリッド"
@@ -33,6 +33,14 @@ ja:
         vortex: "ボルテックス"
         fruit_top: "フルーツ"
         other_top: "その他"
+      smoking_level:
+        strong_smoke: "重い"
+        normal_smoke: "標準"
+        light_smoke: "軽い"
+      smoking_taste_level:
+        strong_taste: "濃い"
+        normal_taste: "標準"
+        light_taste: "薄い"
     user:
       shisha_resistance:
         begginer: "初心者"
@@ -222,4 +230,27 @@ ja:
       short: "%m/%d %H:%M"
     pm: 午後
 
- 
+  activerecord:
+    models:
+      post: 投稿
+      user: ユーザ
+      favorite: お気に入り
+      post_comment: 投稿へのコメント
+    attributes:
+      post:
+        title: タイトル
+        body: 説明
+        flavor_genre: ジャンル
+        player: シーシャ製作者
+        location: 場所
+        hms_genre: HMS種類
+        top_genre: トップ種類
+        duration: 喫煙時間
+        price: 値段
+        flavor_capacity: フレーバー容量
+        flavor_maker: フレーバーメーカー
+        smoking_level: 吸いごたえ
+        smoking_taste_level: 煙の味の濃さ
+        bottle_option: ボトルオプション
+        nicotine: ニコチン
+        star: 煙の評価

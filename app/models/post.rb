@@ -5,12 +5,14 @@ class Post < ApplicationRecord
   has_one_attached :post_image
 
   enum flavor_genre: { fruits: 0, sweets: 1, tea: 2, flower: 3, drink: 4, wood: 5, spice: 6, other: 7 }
-  enum player: { store: 0, myself: 1 }
+  enum player: { stores: 0, myself: 1 }
   enum hms_genre: { turkish: 0, lotus: 1, sream_ration: 2, amavost: 3, direct: 4, other_hms: 5 }
   enum top_genre: { straight: 0, funnel: 1, vortex: 2, fruit_top: 3, other_top: 4 }
+  enum smoking_level: { strong_smoke: 0, normal_smoke: 1, light_smoke: 2 }
+  enum smoking_taste_level: { strong_taste: 0, normal_taste: 1, light_taste: 2 }
 
   validates :title, presence:true
-  validates :text, length: { maximum: 300 }
+  validates :body, length: { maximum: 300 }
   validates :flavor_genre, presence:true
   validates :player, presence:true
   validates :location, length: { maximum: 50 }

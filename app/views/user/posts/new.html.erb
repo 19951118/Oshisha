@@ -1,2 +1,102 @@
-<h1>User::Posts#new</h1>
-<p>Find me in app/views/user/posts/new.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<%= form_with model:@post,local:true do |f| %>
+  <!--レビュー機能-->
+  <% if @post.id.nil? %>
+    <div class="form-group" id="star">
+      <%= f.label :star %>
+      <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+      <div id="post_raty"></div>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#post_raty');
+        if (elem == null) return;
+
+        elem.innerHTML = ""
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[star]',  //postモデルのsterカラムに保存
+        };
+        raty(elem, opt);
+      });
+    </script>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :player %>
+    <%= f.select :player, Post.players_i18n.invert,  class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :flavor_genre %>
+    <%= f.select :flavor_genre, Post.flavor_genres_i18n.invert, {include_blank: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :bottle_option %>
+    <%= f.radio_button :bottle_option, true %>
+    <%= f.label :bottle_option, "あり", value: true %>
+    <%= f.radio_button :bottle_option, false, class:"ml-3" %>
+    <%= f.label :bottle_option, "なし", value: false %>
+  </div>
+  <div class="form-group">
+    <%= f.label :nicotine %>
+    <%= f.radio_button :nicotine, true %>
+    <%= f.label :nicotine, "あり", value: true %>
+    <%= f.radio_button :nicotine, false, class:"ml-3" %>
+    <%= f.label :nicotine, "なし", value: false %>
+  </div>
+  <div class="form-group">
+    <%= f.label :smoking_level %>
+    <%= f.select :smoking_level, Post.smoking_levels_i18n.invert, {include_blank: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :smoking_taste_level %>
+    <%= f.select :smoking_taste_level, Post.smoking_taste_levels_i18n.invert, {include_blank: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :hms_genre %>
+    <%= f.select :hms_genre, Post.hms_genres_i18n.invert, {include_blank: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :top_genre %>
+    <%= f.select :top_genre, Post.top_genres_i18n.invert, {include_blank: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration %>
+    <%= f.number_field :duration, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.number_field :price, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :flavor_capacity %>
+    <%= f.number_field :flavor_capacity, class: 'form-control' %>グラム
+  </div>
+  <div class="form-group">
+    <%= f.label :flavor_maker %>
+    <%= f.text_field :flavor_maker, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>
