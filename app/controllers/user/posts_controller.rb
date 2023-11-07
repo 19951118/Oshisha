@@ -9,13 +9,20 @@ class User::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "あなたの煙を投稿しました！"
     else
-      @posts = Post.all
       render 'new'
     end
   end
 
   def index
-    @post = Post.all
+    if params[:latest]
+      @posts = Post.latest
+    elsif params[:old]
+      @posts = Post.old
+    elsif params[:star_count]
+      @posts = Post.star_count
+    else
+    @posts = Post.all
+    end
   end
 
   def edit
@@ -24,6 +31,8 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
 
  private

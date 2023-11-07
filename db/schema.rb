@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(version: 2023_11_04_070856) do
     t.integer "price"
     t.integer "flavor_capacity"
     t.string "flavor_maker"
-    t.integer "smoking_level", null: false
-    t.integer "smoking_taste_level", null: false
-    t.boolean "bottle_option", default: false, null: false
-    t.boolean "nicotine", default: true, null: false
+    t.integer "smoking_level"
+    t.integer "smoking_taste_level"
+    t.boolean "bottle_option", default: false
+    t.boolean "nicotine", default: true
     t.string "star", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

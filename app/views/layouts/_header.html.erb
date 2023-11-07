@@ -16,7 +16,7 @@
           <%= link_to posts_path, class:"btn m-2" do %>
            煙一覧 <i class="fas fa-cheese"></i>
           <% end %>
-          <%= link_to user_path, class:"btn m-2" do %>
+          <%= link_to user_path(current_user), class:"btn m-2" do %>
             マイページ<i class="fas fa-shopping-cart"></i>
           <% end %>
           <%= link_to destroy_user_session_path, method: :delete, class:"btn m-2" do %>

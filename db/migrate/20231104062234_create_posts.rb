@@ -13,10 +13,10 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :price
       t.integer :flavor_capacity
       t.string :flavor_maker
-      t.integer :smoking_level,       null: false
-      t.integer :smoking_taste_level, null: false
-      t.boolean :bottle_option,       null: false, default: "false"
-      t.boolean :nicotine,            null: false, default: "true"
+      t.integer :smoking_level
+      t.integer :smoking_taste_level
+      t.boolean :bottle_option,       default: "false"
+      t.boolean :nicotine,            default: "true"
       t.string :star,                 null: false
       t.timestamps
     end

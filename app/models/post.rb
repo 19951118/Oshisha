@@ -16,14 +16,10 @@ class Post < ApplicationRecord
   validates :flavor_genre, presence:true
   validates :player, presence:true
   validates :location, length: { maximum: 50 }
-  validates :duration, numericality: { less_than_or_equal_to: 999}
-  validates :price, numericality: { less_than_or_equal_to: 9999}
-  validates :flavor_capacity, numericality: { less_than_or_equal_to: 99}
+  validates :duration, numericality: { less_than_or_equal_to: 999, allow_blank: true}
+  validates :price, numericality: { less_than_or_equal_to: 9999, allow_blank: true}
+  validates :flavor_capacity, numericality: { less_than_or_equal_to: 99, allow_blank: true}
   validates :flavor_maker, length: { maximum: 70 }
-  validates :smoking_level, presence:true
-  validates :smoking_taste_level, presence:true
-  validates :bottle_option, presence:true
-  validates :nicotine, presence:true
   validates :star, presence:true
 
     #indexの並び順を変更する。descが昇順、escが降順。
@@ -34,4 +30,13 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def get_post_image(width, height)
+    unless post_image.attached?
+      file_path = Rails.root.join('app/assets/images/no-image-icon.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'no-image-icon.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
 end
