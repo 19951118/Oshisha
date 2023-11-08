@@ -5,10 +5,10 @@
       <%= render 'user/users/info', user: @post.user %>
       <%= render 'user/relationships/follow_info', user: @post.user %>
     </div>
-    <div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <tr>
+    <div class='col-md-9'>
+      <h2>煙詳細</h2>
+      <table class='table'>
+        <tr>
           <td><%= link_to(@post.user) do %>
             <%= image_tag @post.user.get_profile_image(100,100) %><br>
             <%= @post.user.name %>
@@ -35,7 +35,9 @@
       <div id="comment_index">
         <%= render "user/post_comments/index", post: @post %>
       </div>
-      <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>
+      <div id="comment_form">
+        <%= render "user/post_comments/form", post: @post, post_comment: @post_comment %>
+      </div>
     </div>
   </div>
 </div>

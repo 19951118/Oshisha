@@ -11,13 +11,13 @@
           <div class="col text-center">ようこそ、<%= current_user.name %>さん!</div>
 
           <%= link_to new_post_path, class:"btn m-2" do %>
-            投稿する <i class="fas fa-user"></i>
+            投稿する <i class="fa-regular fa-paper-plane"></i>
           <% end %>
           <%= link_to posts_path, class:"btn m-2" do %>
-           煙一覧 <i class="fas fa-cheese"></i>
+           煙一覧 <i class="fa-solid fa-bong"></i>
           <% end %>
           <%= link_to user_path(current_user), class:"btn m-2" do %>
-            マイページ<i class="fas fa-shopping-cart"></i>
+            マイページ<i class="fas fa-user"></i>
           <% end %>
           <%= link_to destroy_user_session_path, method: :delete, class:"btn m-2" do %>
             ログアウト<i class="fas fa-sign-out-alt"></i>
@@ -25,7 +25,7 @@
 
         <% elsif admin_signed_in? %>
           <%= link_to admin_posts_path, class:"btn m-2" do %>
-            煙一覧 <i class="fas fa-cheese"></i>
+            煙一覧 <i class="fa-solid fa-bong"></i>
           <% end %>
           <%= link_to admin_users_path, class:"btn m-2" do %>
             会員一覧 <i class="fas fa-users"></i>
@@ -42,7 +42,7 @@
             About <i class="fas fa-apple-alt"></i>
           <% end %>
           <%= link_to posts_path, class:"btn m-2" do %>
-            煙一覧 <i class="fas fa-cheese"></i>
+            煙一覧 <i class="fa-solid fa-bong"></i>
           <% end %>
           <%= link_to new_user_registration_path, class:"btn m-2" do %>
             新規登録 <i class="fas fa-user-plus"></i>

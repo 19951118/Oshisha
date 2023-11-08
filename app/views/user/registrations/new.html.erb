@@ -1,39 +1,46 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "user/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+<div class="container">
+  <div class="row no-gutters">
+    <%= render "user/shared/error_messages", resource: resource %>
+    <div class="col-md-5 mx-2 mx-auto text-center shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light py-4 mb-0">新規登録</h5>
+      <div class="form-body p-4">
+        <div class="mx-auto text-center">
+            <p>必要情報を入力してください。</p>
+        </div>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
+            </div>
+            <%= f.text_field :name, autocomplete: "off", class:"form-control", placeholder:"ユーザネーム" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-bong"></i></span>
+            </div>
+            <%= f.select :shisha_resistance, User.shisha_resistances_i18n.invert, {include_blank: 'シーシャの慣れを選択'},autocomplete: "off", class:"form-control" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "emailアドレス" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
+            </div>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"パスワード（英数字6文字以上）" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
+            </div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"パスワード確認" %>
+          </div>
+          <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-info mt-5" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :shisha_resistance %><br />
-    <%= f.select :shisha_resistance, User.shisha_resistances_i18n.invert %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(英数字<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "user/shared/links" %>
+</div>

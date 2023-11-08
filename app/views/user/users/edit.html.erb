@@ -9,13 +9,17 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
-     <div class="form-group">
+      <div class="form-group">
         <%= f.label :image %>
         <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
       <div class="form-group">
         <%= f.label :profile %>
         <%= f.text_area :profile, class: "form-control introduction" %>
+      </div>
+      <div class="field">
+        <%= f.label :shisha_resistance %><br />
+        <%= f.select :shisha_resistance, User.shisha_resistances_i18n.invert %>
       </div>
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
