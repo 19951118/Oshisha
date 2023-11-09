@@ -27,3 +27,6 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+
+## 使用素材
+<a href="https://jp.freepik.com/free-photo/white-smoke-wallpaper-abstract-desktop-background_18100722.htm#query=shisha&position=15&from_view=search&track=sph">著作者：rawpixel.com</a>／出典：Freepik
