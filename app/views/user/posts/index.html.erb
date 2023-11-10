@@ -1,14 +1,15 @@
-<div class='container px-2 px-sm-0'>
+<div class='container'>
   <div class='row'>
     <div class='col-md-3 border'>
       <h3>検索</h3>
       <div class="d-flex justify-content-center mb-2">
         <%= render "user/searches/form" %>
       </div>
-      
-      
+
+
     </div>
     <div class='col-md-9 shadow'>
+      <h2>煙一覧</h2>
       <%= render "user/posts/index", posts: @posts %>
     </div>
   </div>

@@ -1,18 +1,14 @@
 <table class="table">
   <tr>
-    <th>フォロー</th>
     <th>
       <%= link_to user_followings_path(user) do %>
-        <%= user.followings.count %>
+        <%= user.followings.count %>フォロー
       <% end %>
     </th>
-  </tr>
-  <tr>
-    <th>followers</th>
     <th>
       <%= link_to user_followers_path(user) do %>
-        <%= user.followers.count %>
+        <%= user.followers.count %>フォロワー
       <% end %>
-      </th>
+    </th>
   </tr>
 </table>

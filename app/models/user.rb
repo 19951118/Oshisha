@@ -30,6 +30,16 @@ class User < ApplicationRecord
     end
   end
   
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+      user.profile = "ゲストのアカウント"
+      user.shisha_resistance = 0
+      user.is_active = true
+    end
+  end
+  
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

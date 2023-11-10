@@ -1,0 +1,13 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>ユーザ情報</h2>
+      <%= render 'user/users/info', user: @user %>
+      <%= render 'user/relationships/follow_info', user: @user %>
+    </div>
+   <div class='col-md-9 shadow'>
+    <h2><%= @user.name %>のお気に入りの煙一覧</h2>
+      <%= render "user/posts/index", posts: @favorite_posts %>
+    </div>
+  </div>
+</div>

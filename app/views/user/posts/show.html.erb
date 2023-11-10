@@ -4,17 +4,19 @@
       <h2>ユーザ情報</h2>
       <%= render 'user/users/info', user: @post.user %>
       <%= render 'user/relationships/follow_info', user: @post.user %>
+      <%= link_to "お気に入り一覧", favorites_user_path(@post.user) %>
     </div>
     <div class='col-md-9'>
       <h2>煙詳細</h2>
       <% if @post.user == current_user %>
-        <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success float-right" %>
-        <%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger float-right"%>
+        <%= link_to '投稿編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
+        <%= link_to '投稿削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
       <% end %>
-      <table class='table'>
+      <table class='table table-bordered'>
         <tr>
           <td><%= link_to @post.title, @post %></td>
-          <td><%= @post.player %></td>
+          <td><%= @post.flavor_genre_i18n %></td>
+          <td><%= @post.player_i18n %></td>
           <td id="favorite_btn_<%= @post.id %>" >
             <%= render "user/favorites/btn", post: @post %>
           </td>
@@ -26,22 +28,39 @@
           </td>
         </tr>
         <tr>
-          <td colspan="5"><%= @post.body %></td>
+          <td colspan="6"><%= @post.body %></td>
         </tr>
         <tr>
-          <td>金額<%= @post.price %></td>
-          <td>ボトルオプション<%= @post.bottle_option %></td>
-          <td>ニコチン<%= @post.nicotine %></td>
-          <td>吸いごたえ<%= @post.smoking_level %></td>
-          <td>味の濃さ<%= @post.smoking_taste_level %></td>
+          <th>金額</th>
+          <td><%= @post.price %>円</td>
+          <th>ボトルオプション</th>
+          <td><%= @post.bottle_option ? 'あり' : 'なし' %></td>
+          <th>ニコチン</th>
+          <td><%= @post.nicotine ? 'あり' : 'なし' %></td>
         </tr>
         <tr>
-          <td><%= @post.hms_genre %></td>
-          <td><%= @post.top_genre %></td>
-          <td><%= @post.location %></td>
-          <td><%= @post.duration %></td>
-          <td><%= @post.flavor_capacity %></td>
-          <td><%= @post.flavor_genre %></td>
+          <th>吸いごたえ</th>
+          <td><%= @post.smoking_level_i18n %></td>
+          <th>煙の味の濃さ</th>
+          <td><%= @post.smoking_taste_level_i18n %></td>
+          <th>HMS種類</th>
+          <td><%= @post.hms_genre_i18n %></td>
+        </tr>
+        <tr>
+          <th>トップ種類</th>
+          <td><%= @post.top_genre_i18n %></td>
+          <th>喫煙時間</th>
+          <td><%= @post.duration %>分</td>
+          <th>フレーバー容量</th>
+          <td><%= @post.flavor_capacity %>グラム</td>
+        </tr>
+        <tr>
+          <th colspan="2">フレーバーメーカー</th>
+          <td colspan="4"><%= @post.flavor_maker %></td>
+        </tr>
+        <tr>
+          <th colspan="2">場所</th>
+          <td colspan="4"><%= @post.location %></td>
         </tr>
       </table>
       <div id="comment_index">

@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class = "container" >
 
       <%= link_to root_path do %>
-        <%= image_tag "", alt: "Logo", size:"340x90" %>
+        <%= image_tag "logo.png", alt: "Logo", size:"90x80" %>
       <% end %>
 
       <div class = "ml-auto">
@@ -41,8 +41,8 @@
           <%= link_to about_path, class:"btn m-2" do %>
             About <i class="fas fa-apple-alt"></i>
           <% end %>
-          <%= link_to posts_path, class:"btn m-2" do %>
-            煙一覧 <i class="fa-solid fa-bong"></i>
+          <%= link_to users_guest_sign_in_path, method: :post, class:"btn m-2" do %>
+            ゲストログイン <i class="fa-solid fa-bong"></i>
           <% end %>
           <%= link_to new_user_registration_path, class:"btn m-2" do %>
             新規登録 <i class="fas fa-user-plus"></i>
