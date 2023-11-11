@@ -22,11 +22,13 @@ class Post < ApplicationRecord
   validates :flavor_maker, length: { maximum: 70 }
   validates :star, presence:true
 
-    #indexの並び順を変更する。descが昇順、escが降順。
-  scope :latest, -> {order(created_at: :desc)} #最新-データ取り出し-作成日時
-  scope :old, -> {order(created_at: :asc)} #最古-データ取り出し-作成日時
-  scope :star_count, -> {order(star: :desc)} #星の多さ-データ取り出し-starカラム
-  
+  #indexの並び順を変更する。descが昇順、escが降順。
+  default_scope -> {order(created_at: :desc)}
+  scope :latest, -> {reorder(created_at: :desc)} #最新-データ取り出し-作成日時
+  scope :old, -> {reorder(created_at: :asc)} #最古-データ取り出し-作成日時
+  scope :star_count, -> {reorder(star: :desc)} #星の多さ-データ取り出し-starカラム
+
+
   def self.search_for(content, method)
     if method == 'perfect'
       Post.where(title: content)
@@ -38,11 +40,11 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', '%' + content + '%')
     end
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def get_post_image(width, height)
     unless post_image.attached?
       file_path = Rails.root.join('app/assets/images/no-image-icon.jpg')
@@ -50,5 +52,5 @@ class Post < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
 end

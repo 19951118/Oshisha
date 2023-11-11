@@ -14,6 +14,7 @@ class User::PostsController < ApplicationController
   end
 
   def index
+    
     if params[:latest]
       @posts = Post.latest
     elsif params[:old]
@@ -21,8 +22,10 @@ class User::PostsController < ApplicationController
     elsif params[:star_count]
       @posts = Post.star_count
     else
-    @posts = Post.all
+      flavor_genre = params[:flavor_genre]
+      @posts = flavor_genre ? Post.where(flavor_genre: flavor_genre) : Post.all
     end
+    
   end
 
   def edit
@@ -33,7 +36,7 @@ class User::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
   end
-  
+
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)

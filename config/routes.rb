@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root "homes#top"
     get 'about' => 'homes#about'
     get "/search" => "searches#search"
+    get 'flavor/search' => 'searches#flavor_search'
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]

@@ -1,12 +1,17 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3 border'>
-      <h3>検索</h3>
-      <div class="d-flex justify-content-center mb-2">
-        <%= render "user/searches/form" %>
+      <div>
+        <%= render "user/searches/form", flavors: @flavor_genres %>
       </div>
-
-
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Search">
+          詳細検索
+        </button>
+      </p>
+      <div id="Search" class="collapse">
+        
+      </div>
     </div>
     <div class='col-md-9 shadow'>
       <h2>煙一覧</h2>
