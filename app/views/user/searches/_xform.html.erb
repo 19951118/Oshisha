@@ -1,0 +1,19 @@
+<h4>キーワード検索</h4>
+<div>
+  <% if user_signed_in? %>
+    <%= form_with url: search_path, method: :get, local:true do |f| %>
+      <%= f.text_field :content %>
+      <%= f.select :model, options_for_select({"User" => "user", "Post" => "post"}) %>
+      <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
+      <%= f.submit "検索" %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <h4>ジャンルタグ検索</h4>
+  <%= form_with url: posts_path, method: :get, local:true do |f|%>
+    <%= f.select :flavor_genre, options_for_select(Post.flavor_genres.keys, params[:flavor_genre]), prompt: "ジャンルを選択" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+

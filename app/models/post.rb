@@ -41,6 +41,41 @@ class Post < ApplicationRecord
     end
   end
 
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+    name_like(search_params[:title])
+      .star_is(search_params[:star])
+      .price_range(search_params[:price_from], search_params[:price_to])
+      .player_is(search_params[:player])
+      .flavor_genre_is(search_params[:flavor_genre])
+      .bottle_option_is(search_params[:bottle_option])
+      .nicotine_is(search_params[:nicotine])
+      .smoking_level_is(search_params[:smoking_level])
+      .smoking_taste_level_is(search_params[:smoking_taste_level])
+      .hms_genre_is(search_params[:hms_genre])
+      .top_genre_is(search_params[:top_genre])
+      .location_like(search_params[:location])
+      .duration_range(search_params[:duration_from], search_params[:duration_to])
+      .flavor_capacity_range(search_params[:flavor_capacity_from], search_params[:flavor_capacity_to])
+      .flavor_maker_like(search_params[:flavor_maker])
+  end
+
+  scope :name_like, -> (title) { where('title LIKE ?', "%#{title}%") if title.present? }
+  scope :star_is, -> (star) { where(star: star) if star.present? }
+  scope :price_range, -> (from, to) { where(price: from..to) if from.present? && to.present? }
+  scope :player_is, -> (player) { where(player: player) if player.present? }
+  scope :flavor_genre_is, -> (flavor_genre) { where(flavor_genre: flavor_genre) if flavor_genre.present? }
+  scope :bottle_option_is, -> (bottle_option) { where(bottle_option: bottle_option) if bottle_option.present? }
+  scope :nicotine_is, -> (nicotine) { where(nicotine: nicotine) if nicotine.present? }
+  scope :smoking_level_is, -> (smoking_level) { where(smoking_level: smoking_level) if smoking_level.present? }
+  scope :smoking_taste_level_is, -> (smoking_taste_level) { where(smoking_taste_level: smoking_taste_level) if smoking_taste_level.present? }
+  scope :hms_genre_is, -> (hms_genre) { where(hms_genre: hms_genre) if hms_genre.present? }
+  scope :top_genre_is, -> (top_genre) { where(top_genre: top_genre) if top_genre.present? }
+  scope :location_like, -> (location) { where('location LIKE ?', "%#{location}%") if location.present? }
+  scope :duration_range, -> (from, to) { where(duration: from..to) if from.present? && to.present? }
+  scope :flavor_capacity_range, -> (from, to) { where(flavor_capacity: from..to) if from.present? && to.present? }
+  scope :flavor_maker_like, -> (flavor_maker) { where('flavor_maker LIKE ?', "%#{flavor_maker}%") if flavor_maker.present? }
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

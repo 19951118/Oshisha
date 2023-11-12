@@ -2,7 +2,7 @@
   <%= render 'layouts/errors', obj: @post %>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <%= form_with model:@post,local:true do |f| %>
+      <%= form_with model: @post,local:true do |f| %>
         <!--レビュー機能-->
         <% if @post.id.nil? %>
           <div class="form-group" id="star">

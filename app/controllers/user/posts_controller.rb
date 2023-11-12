@@ -14,7 +14,6 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    
     if params[:latest]
       @posts = Post.latest
     elsif params[:old]
@@ -22,10 +21,9 @@ class User::PostsController < ApplicationController
     elsif params[:star_count]
       @posts = Post.star_count
     else
-      flavor_genre = params[:flavor_genre]
-      @posts = flavor_genre ? Post.where(flavor_genre: flavor_genre) : Post.all
+      @search_params = post_search_params
+      @posts = Post.search(@search_params)
     end
-    
   end
 
   def edit
@@ -57,5 +55,9 @@ class User::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration, :price, :flavor_capacity, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star)
+  end
+
+  def post_search_params
+    params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star)
   end
 end

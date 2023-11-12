@@ -1,19 +1,106 @@
-<h4>キーワード検索</h4>
-<div>
-  <% if user_signed_in? %>
-    <%= form_with url: search_path, method: :get, local:true do |f| %>
-      <%= f.text_field :content %>
-      <%= f.select :model, options_for_select({"User" => "user", "Post" => "post"}) %>
-      <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
-      <%= f.submit "検索" %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <h4>ジャンルタグ検索</h4>
-  <%= form_with url: posts_path, method: :get, local:true do |f|%>
-    <%= f.select :flavor_genre, options_for_select(Post.flavor_genres.keys, params[:flavor_genre]), prompt: "ジャンルを選択" %>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
+<h3>検索</h3>
+    <div class="serch-form">
+      <%= form_with(scope: :search, url: posts_path, method: :get, local:true) do |f| %>
+          <div class="form-group" id="star">
+            <%= f.label :star %>
+            <%= f.hidden_field :star, id: :review_star, value: search_params[:star], class: 'form-control' %>
+            <div id="post_raty"></div>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#post_raty');
+              if (elem == null) return;
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                scoreName: 'search[star]',  
+              };
+              raty(elem, opt);
+            });
+          </script>
 
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, value: search_params[:title], class: 'form-control',placeholder: "店名や作品名など" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :location %>
+          <%= f.text_field :location, value: search_params[:location], class: 'form-control',placeholder: "店舗住所等" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.number_field :price_from, value: search_params[:price_from],class: 'form-control', placeholder: "円" %> ~ <%= f.number_field :price_to, value: search_params[:price_to],class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :player %>
+          <%= f.select :player, Post.players_i18n.invert, selected: search_params[:player], class: 'form-control', include_blank: '選択' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :flavor_genre %>
+          <%= f.select :flavor_genre, Post.flavor_genres_i18n.invert, selected: search_params[:flavor_genre], class: 'form-control', include_blank: '選択' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nicotine %>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :nicotine, true, id: 'nicotine_true', class: 'form-check-input', checked: search_params[:nicotine] == 'true' %>
+            <%= f.label 'nicotine_true', 'あり', class: 'form-check-label' %>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :nicotine, false, id: 'nicotine_false', class: 'form-check-input', checked: search_params[:nicotine] == 'false' %>
+            <%= f.label 'nicotine_false', 'なし', class: 'form-check-label' %>
+          </div>
+        </div>
+        <div>
+          <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#tagContent">
+              詳細に検索する
+            </button>
+          </p>
+          <div id="tagContent" class="collapse">
+            <div class="form-group">
+              <%= f.label :bottle_option %>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :bottle_option, true, id: 'bottle_option_true', class: 'form-check-input', checked: search_params[:bottle_option] == 'true' %>
+                <%= f.label 'bottle_option_true', 'あり', class: 'form-check-label' %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :bottle_option, false, id: 'bottle_option_false', class: 'form-check-input', checked: search_params[:bottle_option] == 'false' %>
+                <%= f.label 'bottle_option_false', 'なし', class: 'form-check-label' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :smoking_level %>
+              <%= f.select :smoking_level, Post.smoking_levels_i18n.invert, selected: search_params[:smoking_level], class: 'form-control', include_blank: '選択' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :smoking_taste_level %>
+              <%= f.select :smoking_taste_level, Post.smoking_taste_levels_i18n.invert, selected: search_params[:smoking_taste_level], class: 'form-control', include_blank: '選択' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :hms_genre %>
+              <%= f.select :hms_genre, Post.hms_genres_i18n.invert, selected: search_params[:hms_genre], class: 'form-control', include_blank: '選択' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :top_genre %>
+              <%= f.select :top_genre, Post.top_genres_i18n.invert, selected: search_params[:top_genre], class: 'form-control', include_blank: '選択' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :duration %>
+              <%= f.number_field :duration_from, value: search_params[:duration_from],class: 'form-control', placeholder: "分" %> ~ <%= f.number_field :duration_to, value: search_params[:duration_to],class: 'form-control'  %>
+            </div>
+            <div class="form-group">
+              <%= f.label :flavor_capacity %>
+              <%= f.number_field :flavor_capacity_from, value: search_params[:flavor_capacity_from],class: 'form-control', placeholder: "グラム" %> ~ <%= f.number_field :flavor_capacity_to, value: search_params[:flavor_capacity_to],class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :flavor_maker %>
+              <%= f.text_field :flavor_maker, value: search_params[:flavor_maker], class: 'form-control',placeholder: "アルファーヘル、ドザジ" %>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>

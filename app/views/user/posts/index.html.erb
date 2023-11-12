@@ -1,17 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3 border'>
-      <div>
-        <%= render "user/searches/form", flavors: @flavor_genres %>
-      </div>
-      <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Search">
-          詳細検索
-        </button>
-      </p>
-      <div id="Search" class="collapse">
-        
-      </div>
+        <%= render "user/searches/form",  search_params: @search_params %>
     </div>
     <div class='col-md-9 shadow'>
       <h2>煙一覧</h2>
