@@ -1,9 +1,8 @@
-
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>ユーザ情報</h2>
-    <%= form_with model:@user, local:true do |f| %>
+    <%= form_with model: @user, url: admin_user_path(@user), method: :patch, local: true do |f| %>
       <%= render 'layouts/errors', obj: @user %>
       <div class="form-group">
         <%= f.label :name %>
@@ -22,14 +21,15 @@
         <%= f.select :shisha_resistance, User.shisha_resistances_i18n.invert %>
       </div>
       <div class="form-group">
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :有効 %>
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :退会 %>
+      </div>
+      <div class="form-group">
         <%= f.submit class: 'btn btn-success' %>
-
-
-            <%= link_to "アカウント削除",user_path(current_user.id),class: "btn btn-danger float-right", method: :delete, "data-confirm" => "本当にアカウントを削除しますか？" %>
-
-
+        <%= link_to "アカウント削除",admin_user_path(@user),class: "btn btn-danger float-right", method: :delete, "data-confirm" => "本当にアカウントを削除しますか？" %>
       </div>
     <% end %>
-
   </div>
 </div>

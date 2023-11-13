@@ -1,4 +1,6 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_post_matching_login_user, only: [:edit, :update, :destroy]
   def new
     @post = Post.new
   end
@@ -14,11 +16,12 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    if params[:latest]
+    case
+    when params[:latest]
       @posts = Post.latest
-    elsif params[:old]
+    when params[:old]
       @posts = Post.old
-    elsif params[:star_count]
+    when params[:star_count]
       @posts = Post.star_count
     else
       @search_params = post_search_params
@@ -60,4 +63,12 @@ class User::PostsController < ApplicationController
   def post_search_params
     params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star)
   end
+
+  def is_post_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user == current_user
+      redirect_to root_path
+    end
+  end
+
 end

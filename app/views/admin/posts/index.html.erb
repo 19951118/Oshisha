@@ -1,0 +1,11 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3 border'>
+        <%= render "admin/searches/form",  search_params: @search_params %>
+    </div>
+    <div class='col-md-9 shadow'>
+      <h2>管理煙一覧</h2>
+       <%= render "admin/posts/index", posts: @posts %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>ユーザ情報</h2>
+      <%= render 'admin/users/info', user: @post.user %>
+      <%= render 'user/relationships/follow_info', user: @post.user %>
+    </div>
+    <div class='col-md-9'>
+      <h2>煙詳細</h2>
+        <%= link_to '投稿削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
+      <table class='table table-bordered'>
+        <tr>
+          <td><%= link_to @post.title, admin_post_path(@post) %></td>
+          <td><%= @post.flavor_genre_i18n %></td>
+          <td><%= @post.player_i18n %></td>
+          <td >
+            ♥<%= @post.favorites.count %>
+          </td>
+          <td>
+            <%= render "admin/post_comments/counter", post: @post %>
+          </td>
+          <td>
+            <%= render "user/posts/static_rate", post: @post %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6"><%= @post.body %></td>
+        </tr>
+        <tr>
+          <th>金額</th>
+          <td><%= @post.price %>円</td>
+          <th>ボトルオプション</th>
+          <td><%= @post.bottle_option ? 'あり' : 'なし' %></td>
+          <th>ニコチン</th>
+          <td><%= @post.nicotine ? 'あり' : 'なし' %></td>
+        </tr>
+        <tr>
+          <th>吸いごたえ</th>
+          <td><%= @post.smoking_level_i18n %></td>
+          <th>煙の味の濃さ</th>
+          <td><%= @post.smoking_taste_level_i18n %></td>
+           <th>HMS種類</th>
+          <td><%= @post.hms_genre_i18n %></td>
+        </tr>
+        <tr>
+          <th>トップ種類</th>
+          <td><%= @post.top_genre_i18n %></td>
+          <th>喫煙時間</th>
+          <td><%= @post.duration %>分</td>
+          <th>フレーバー容量</th>
+          <td><%= @post.flavor_capacity %>グラム</td>
+        </tr>
+        <tr>
+          <th colspan="2">フレーバーメーカー</th>
+          <td colspan="4"><%= @post.flavor_maker %></td>
+        </tr>
+        <tr>
+          <th colspan="2">場所</th>
+          <td colspan="4"><%= @post.location %></td>
+        </tr>
+      </table>
+      <div>
+        <%= render 'admin/post_comments/index', post: @post %>
+      </div>
+    </div>
+  </div>
+</div>

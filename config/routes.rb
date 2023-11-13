@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   scope module: :user do
     root "homes#top"
     get 'about' => 'homes#about'
-    #get "/search" => "searches#search"
-    #get 'flavor/search' => 'searches#flavor_search'
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -22,6 +20,15 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
   end
+  
+  namespace :admin do
+    root 'homes#top'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts do
+      resources :post_comments
+    end
+  end
+  
 devise_for :user,skip: [:passwords], controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
