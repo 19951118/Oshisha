@@ -2,7 +2,7 @@
     <div class="serch-form">
       <%= form_with(scope: :search, url: admin_posts_path, method: :get, local:true) do |f| %>
           <div class="form-group" id="star">
-            <%= f.label :star %>
+            <%= f.label "評価" %>
             <%= f.hidden_field :star, id: :review_star, value: search_params&.fetch(:star, nil), class: 'form-control' %>
             <div id="post_raty"></div>
           </div>
@@ -21,27 +21,27 @@
           </script>
 
         <div class="form-group">
-          <%= f.label :title %>
+          <%= f.label "タイトル" %>
           <%= f.text_field :title, value: search_params&.fetch(:title, nil), class: 'form-control',placeholder: "店名や作品名など" %>
         </div>
         <div class="form-group">
-          <%= f.label :location %>
+          <%= f.label "場所" %>
           <%= f.text_field :location, value: search_params&.fetch(:location, nil), class: 'form-control',placeholder: "店舗住所等" %>
         </div>
         <div class="form-group">
-          <%= f.label :price %>
+          <%= f.label "金額" %>
           <%= f.number_field :price_from, value: search_params&.fetch(:price_from, nil),class: 'form-control', placeholder: "円" %> ~ <%= f.number_field :price_to, value: search_params&.fetch(:price_to, nil),class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :player %>
+          <%= f.label "製作者" %>
           <%= f.select :player, Post.players_i18n.invert, selected: search_params&.fetch(:player, nil), class: 'form-control', include_blank: '選択' %>
         </div>
         <div class="form-group">
-          <%= f.label :flavor_genre %>
+          <%= f.label "味のジャンル" %>
           <%= f.select :flavor_genre, Post.flavor_genres_i18n.invert, selected: search_params&.fetch(:flavor_genre, nil), class: 'form-control', include_blank: '選択' %>
         </div>
         <div class="form-group">
-          <%= f.label :nicotine %>
+          <%= f.label "ニコチン" %>
           <div class="form-check form-check-inline">
             <%= f.radio_button :nicotine, true, id: 'nicotine_true', class: 'form-check-input', checked: search_params&.fetch(:nicotine, nil) == 'true' %>
             <%= f.label 'nicotine_true', 'あり', class: 'form-check-label' %>
@@ -59,7 +59,7 @@
           </p>
           <div id="tagContent" class="collapse">
             <div class="form-group">
-              <%= f.label :bottle_option %>
+              <%= f.label "ボトルオプション" %>
               <div class="form-check form-check-inline">
                 <%= f.radio_button :bottle_option, true, id: 'bottle_option_true', class: 'form-check-input', checked: search_params&.fetch(:bottle_option, nil) == 'true' %>
                 <%= f.label 'bottle_option_true', 'あり', class: 'form-check-label' %>
@@ -70,31 +70,31 @@
               </div>
             </div>
             <div class="form-group">
-              <%= f.label :smoking_level %>
+              <%= f.label "吸いごたえ" %>
               <%= f.select :smoking_level, Post.smoking_levels_i18n.invert, selected: search_params&.fetch(:smoking_level, nil), class: 'form-control', include_blank: '選択' %>
             </div>
             <div class="form-group">
-              <%= f.label :smoking_taste_level %>
+              <%= f.label "煙の味の濃さ" %>
               <%= f.select :smoking_taste_level, Post.smoking_taste_levels_i18n.invert, selected: search_params&.fetch(:smoking_taste_level, nil), class: 'form-control', include_blank: '選択' %>
             </div>
             <div class="form-group">
-              <%= f.label :hms_genre %>
+              <%= f.label "HMSジャンル" %>
               <%= f.select :hms_genre, Post.hms_genres_i18n.invert, selected: search_params&.fetch(:hms_genre, nil), class: 'form-control', include_blank: '選択' %>
             </div>
             <div class="form-group">
-              <%= f.label :top_genre %>
+              <%= f.label "トップジャンル" %>
               <%= f.select :top_genre, Post.top_genres_i18n.invert, selected: search_params&.fetch(:top_genre, nil), class: 'form-control', include_blank: '選択' %>
             </div>
             <div class="form-group">
-              <%= f.label :duration %>
+              <%= f.label "喫煙時間" %>
               <%= f.number_field :duration_from, value: search_params&.fetch(:duration_from, nil),class: 'form-control', placeholder: "分" %> ~ <%= f.number_field :duration_to, value: search_params&.fetch(:duration_to, nil),class: 'form-control'  %>
             </div>
             <div class="form-group">
-              <%= f.label :flavor_capacity %>
+              <%= f.label "フレーバー容量" %>
               <%= f.number_field :flavor_capacity_from, value: search_params&.fetch(:flavor_capacity_from, nil),class: 'form-control', placeholder: "グラム" %> ~ <%= f.number_field :flavor_capacity_to, value: search_params&.fetch(:flavor_capacity_to, nil),class: 'form-control' %>
             </div>
             <div class="form-group">
-              <%= f.label :flavor_maker %>
+              <%= f.label "フレーバーメーカー" %>
               <%= f.text_field :flavor_maker, value: search_params&.fetch(:flavor_maker, nil), class: 'form-control',placeholder: "アルファーヘル、ドザジ" %>
             </div>
           </div>

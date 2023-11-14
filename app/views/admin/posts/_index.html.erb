@@ -22,8 +22,8 @@
           <% end %>
         </td>
         <td><%= link_to post.title,admin_post_path(post) %></td>
-        <td><%= post.flavor_genre %></td>
-        <td><%= post.player %></td>
+        <td><%= post.flavor_genre_i18n %></td>
+        <td><%= post.player_i18n %></td>
         <td>
           ♥<%= post.favorites.count %>
         </td>

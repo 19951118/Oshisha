@@ -240,7 +240,7 @@ ja:
       post:
         title: タイトル
         body: 説明
-        flavor_genre: ジャンル
+        flavor_genre: 味のジャンル
         player: シーシャ製作者
         location: 場所
         hms_genre: HMS種類
@@ -254,21 +254,3 @@ ja:
         bottle_option: ボトルオプション
         nicotine: ニコチン
         star: 煙の評価
-      search:
-        title: タイトル
-        body: 説明
-        flavor_genre: ジャンル
-        player: シーシャ製作者
-        location: 場所
-        hms_genre: HMS種類
-        top_genre: トップ種類
-        duration: 喫煙時間
-        price: 値段
-        flavor_capacity: フレーバー容量
-        flavor_maker: フレーバーメーカー
-        smoking_level: 吸いごたえ
-        smoking_taste_level: 煙の味の濃さ
-        bottle_option: ボトルオプション
-        nicotine: ニコチン
-        star: 煙の評価
-

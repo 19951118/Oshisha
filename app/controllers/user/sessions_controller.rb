@@ -2,7 +2,7 @@
 
 class User::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+  before_action :reject_user, only: [:create]
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -30,4 +30,17 @@ class User::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  protected
+
+  def reject_user
+    @user = User.find_by(email: params[:user][:email])
+    if @user
+      if @user.valid_password?(params[:user][:password]) && (@user.is_active == false)
+        flash[:alert] = "管理者により退会済です"
+        redirect_to new_user_session_path
+      end
+    else
+      flash[:alert] = "必須項目を入力してください"
+    end
+  end
 end
