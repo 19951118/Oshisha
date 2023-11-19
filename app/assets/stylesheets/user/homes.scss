@@ -22,18 +22,18 @@
 
 /* --- 段差で背景画像のアニメーションを実行 ----------------- */
 .boximage .src1 {
-  background-image : url('hookah1.jpg');   /* 背景の画像を指定 */
+  background-image : image-url('hookah1.jpg');   /* 背景の画像を指定 */
 }
 .boximage .src2 {
-  background-image : url('hookah2.jpg');   /* 背景の画像を指定 */
+  background-image : image-url('hookah2.jpg');   /* 背景の画像を指定 */
   animation-delay  : 5s;
 }
 .boximage .src3 {
-  background-image : url('hookah3.jpg');   /* 背景の画像を指定 */
+  background-image : image-url('hookah3.jpg');   /* 背景の画像を指定 */
   animation-delay  : 10s;
 }
 .boximage .src4 {
-  background-image : url('hookah4.jpg');   /* 背景の画像を指定 */
+  background-image : image-url('hookah4.jpg');   /* 背景の画像を指定 */
   animation-delay  : 15s;
 }
 
