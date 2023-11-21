@@ -240,7 +240,7 @@ ja:
       post:
         title: タイトル
         body: 説明
-        flavor_genre: 味のジャンル
+        flavor_genre: ジャンル
         player: シーシャ製作者
         location: 場所
         hms_genre: HMS種類

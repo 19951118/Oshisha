@@ -10,7 +10,7 @@
         <%= f.text_field :name, class: "form-control name" %>
       </div>
       <div class="form-group">
-        <%= f.label :image %>
+        <%= f.label :profile_image %>
         <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
       <div class="form-group">
@@ -23,13 +23,8 @@
       </div>
       <div class="form-group">
         <%= f.submit class: 'btn btn-success' %>
-
-
-            <%= link_to "アカウント削除",user_path(current_user.id),class: "btn btn-danger float-right", method: :delete, "data-confirm" => "本当にアカウントを削除しますか？" %>
-
-
+        <%= link_to "アカウント削除",user_path(current_user.id),class: "btn btn-danger float-right", method: :delete, "data-confirm" => "本当にアカウントを削除しますか？" %>
       </div>
     <% end %>
-
   </div>
 </div>

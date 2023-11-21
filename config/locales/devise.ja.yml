@@ -3,6 +3,8 @@ ja:
     attributes:
       user:
         name: ユーザーネーム
+        profile: プロフィール
+        profile_image: プロフィール画像
         shisha_resistance: シーシャ経験
         password: パスワード
         confirmation_sent_at: パスワード確認送信時刻

@@ -14,7 +14,7 @@
       <% end %>
       <table class='table table-bordered'>
         <tr>
-          <td><%= link_to @post.title, @post %></td>
+          <td><%= @post.title %></td>
           <td><%= @post.flavor_genre_i18n %></td>
           <td><%= @post.player_i18n %></td>
           <td id="favorite_btn_<%= @post.id %>" >

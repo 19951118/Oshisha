@@ -3,14 +3,13 @@
     <div class='col-md-3'>
       <h2>ユーザ情報</h2>
       <%= render 'admin/users/info', user: @post.user %>
-      <%= render 'user/relationships/follow_info', user: @post.user %>
     </div>
     <div class='col-md-9'>
       <h2>煙詳細</h2>
         <%= link_to '投稿削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
       <table class='table table-bordered'>
         <tr>
-          <td><%= link_to @post.title, admin_post_path(@post) %></td>
+          <td><%= @post.title %></td>
           <td><%= @post.flavor_genre_i18n %></td>
           <td><%= @post.player_i18n %></td>
           <td >
