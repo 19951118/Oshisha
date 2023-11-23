@@ -5,7 +5,7 @@ ja:
         name: ユーザーネーム
         profile: プロフィール
         profile_image: プロフィール画像
-        shisha_resistance: シーシャ経験
+        shisha_resistance: シーシャの慣れ
         password: パスワード
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン

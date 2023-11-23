@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :shisha_resistance, presence:true
 
   def self.search_for(content)
+    content ||= ""
     User.where('name LIKE ?', '%' + content + '%')
   end
   

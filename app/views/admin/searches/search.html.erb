@@ -1,14 +1,5 @@
-<div class='container my-3'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h3>ユーザ検索</h3>
-      <%= form_with url: admin_search_path, method: :get, local:true do |f| %>
-        <%= f.text_field :content %>
-        <%= f.submit "検索" %>
-      <% end %>
-    </div>
-    <div class='col-md-9'>
-      <h2>ユーザ一覧</h2>
+<div class='container'>
+      <h3>ユーザネーム"<%= @content %>"の検索結果</h3>
       <table class='table table-hover table-sm'>
         <thead>
           <tr>
@@ -19,7 +10,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
+          <% @records.each do |user| %>
             <tr>
               <td><%= user.id %></td>
               <td>
@@ -36,8 +27,6 @@
         </tbody>
       </table>
       <div class ="d-flex justify-content-center">
-        <%= paginate @users %>
+        <%= paginate @records %>
       </div>
-    </div>
-  </div>
 </div>

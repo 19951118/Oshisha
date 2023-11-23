@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   enum smoking_level: { strong_smoke: 0, normal_smoke: 1, light_smoke: 2 }
   enum smoking_taste_level: { strong_taste: 0, normal_taste: 1, light_taste: 2 }
 
-  validates :title, presence:true
+  validates :title, presence:true, length: { maximum: 15 }
   validates :body, length: { maximum: 300 }
   validates :flavor_genre, presence:true
   validates :player, presence:true

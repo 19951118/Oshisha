@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   scope module: :user do
     root "homes#top"
     get 'about' => 'homes#about'
+    get "/search", to: "searches#search"
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root 'homes#top'
+    get "/search", to: "searches#search"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts do
       resources :post_comments
