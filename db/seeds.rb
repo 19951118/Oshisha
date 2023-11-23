@@ -61,7 +61,7 @@
        {
         user_id: 3,
         title: "キメト",
-        body: "ありえんほど美味しい。",
+        body: "ここが日本一です。",
         flavor_genre: 3,
         player: 0,
         location: "浅草",
@@ -80,7 +80,7 @@
        {
         user_id: 1,
         title: "表参道オランジュ",
-        body: "吸いやすくて美味しいです。",
+        body: "初心者にもおすすめです。",
         flavor_genre: 3,
         player: 0,
         location: "表参道",
@@ -116,7 +116,7 @@
         star: 2
       },
        {
-        user_id: 1,
+        user_id: 5,
         title: "煙の国のアリス",
         body: "閉店しました。。",
         flavor_genre: 2,
@@ -135,9 +135,9 @@
         star: 3
       },
        {
-        user_id: 5,
+        user_id: 6,
         title: "ちるこれ",
-        body: "吸いやすくて美味しいです。",
+        body: "最近美味くなったようです。",
         flavor_genre: 2,
         player: 0,
         location: "表参道",
@@ -156,4 +156,59 @@
     ]
   )
   
+  PostComment.create!(
+    [
+      {
+        user_id: 1,
+        post_id: 1,
+        comment: "この間店長が変わったようです。",
+      },
+      {
+        user_id: 2,
+        post_id: 3,
+        comment: "一度はいってみたい！",
+      },
+    ]
+  )
   
+  Favorite.create!(
+    [
+      {
+        user_id: 1,
+        post_id: 2,
+      },
+      {
+        user_id: 1,
+        post_id: 3,
+      },
+    ]
+  )
+  
+  Relationship.create!(
+    [
+      {
+        follower_id: 1,
+        followed_id: 2,
+      },
+      {
+        follower_id: 2,
+        followed_id: 1,
+      },
+      {
+        follower_id: 3,
+        followed_id: 1,
+      },
+      {
+        follower_id: 1,
+        followed_id: 4,
+      },
+      {
+        follower_id: 1,
+        followed_id: 5,
+      },
+      {
+        follower_id: 3,
+        followed_id: 2,
+      },
+    ]
+  )

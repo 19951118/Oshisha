@@ -4,12 +4,7 @@ class User::UsersController < ApplicationController
    
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
-  end
-
-  def index
-    @users = User.all
-    @post = Post.new
+    @posts = @user.posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -34,8 +29,8 @@ class User::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.where(id: favorites).page(params[:page]).per(10)
   end
 
   private

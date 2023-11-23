@@ -30,7 +30,10 @@
         </tr>
       <% end %>
     </tbody>
-  </table> 
+  </table>
+  <div class ="d-flex justify-content-center">
+    <%= paginate users %>
+  </div>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>

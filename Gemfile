@@ -58,6 +58,7 @@ gem 'devise'
 gem "enum_help"
 gem 'jquery-rails'
 gem 'dotenv-rails'
+gem 'kaminari','~> 1.2.1'
 group :production do
   gem 'mysql2'
 end

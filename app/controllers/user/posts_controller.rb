@@ -17,17 +17,17 @@ class User::PostsController < ApplicationController
 
   def index
     @search_params = post_search_params
-    @posts = case
-           when params[:latest]
-             Post.search(@search_params).latest
-           when params[:old]
-             Post.search(@search_params).old
-           when params[:star_count]
-             Post.search(@search_params).star_count
-           else
-             Post.search(@search_params)
-           end
-    
+    @post = case
+            when params[:latest]
+              Post.search(@search_params).latest
+            when params[:old]
+              Post.search(@search_params).old
+            when params[:star_count]
+              Post.search(@search_params).star_count
+            else
+              Post.search(@search_params)
+            end
+    @posts = @post.page(params[:page]).per(10)
   end
 
   def edit

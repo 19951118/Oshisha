@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class = "container" >
-
-      <%= link_to root_path do %>
-        <%= image_tag "logo.png", alt: "Logo", size:"90x80" %>
-      <% end %>
-
-      <div class = "ml-auto">
-        <div class="row justify-content-between align-items-center">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png", alt: "Logo", size:"90x80" %>
+    <% end %>
+    <div class = "ml-auto">
+      <div class="row justify-content-between align-items-center">
         <% if user_signed_in? %>
-          <div class="col text-center">ようこそ、<%= current_user.name %>さん!</div>
-
+          <div class="col text-center">
+            ようこそ、<%= current_user.name %>さん!
+          </div>
+          <!--ログイン状態-->
           <%= link_to new_post_path, class:"btn m-2" do %>
             投稿する <i class="fa-regular fa-paper-plane"></i>
           <% end %>
@@ -22,8 +22,11 @@
           <%= link_to destroy_user_session_path, method: :delete, class:"btn m-2" do %>
             ログアウト<i class="fas fa-sign-out-alt"></i>
           <% end %>
-
+        <!--管理者ログイン状態-->
         <% elsif admin_signed_in? %>
+          <div class="col text-center">
+            管理者モードです。
+          </div>
           <%= link_to admin_posts_path, class:"btn m-2" do %>
             煙一覧 <i class="fa-solid fa-bong"></i>
           <% end %>
@@ -33,7 +36,7 @@
           <%= link_to destroy_admin_session_path, method: :delete, class:"btn m-2" do %>
             ログアウト<i class="fas fa-sign-out-alt"></i>
           <% end %>
-
+        <!--ログアウト状態-->
         <% else %>
           <%= link_to about_path, class:"btn m-2" do %>
             About <i class="fas fa-apple-alt"></i>
@@ -48,7 +51,7 @@
             ログイン <i class="fas fa-sign-in-alt"></i>
           <% end %>
         <% end %>
-        </div>
-     </div>
+      </div>
+    </div>
   </div>
 </nav>
