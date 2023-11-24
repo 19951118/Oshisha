@@ -1,3 +1,12 @@
+<div class="mb-3">
+  <h5>ユーザ検索</h5>
+  <div>
+  <%= form_with url: search_path, method: :get, local:true do |f| %>
+    <%= f.text_field :content %>
+    <%= f.submit "検索" %>
+  <% end %>
+  </div>
+</div>
 <h3>煙検索</h3>
 <div class="serch-form">
   <%= form_with(scope: :search, url: posts_path, method: :get, local:true) do |f| %>
@@ -103,13 +112,4 @@
       <%= f.submit "検索する", class: 'btn btn-success form-control' %>
     </div>
   <% end %>
-</div>
-<div class="mt-3">
-  <h3>ユーザ検索</h3>
-  <div>
-  <%= form_with url: search_path, method: :get, local:true do |f| %>
-    <%= f.text_field :content %>
-    <%= f.submit "検索" %>
-  <% end %>
-  </div>
 </div>

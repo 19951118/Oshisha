@@ -1,4 +1,5 @@
 <h4>コメント一覧</h4>
+<% if post.post_comments.exists? %>
 <table>
   <tbody>
     <% post.post_comments.each do |post_comment| %>
@@ -19,3 +20,6 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <h6 class ="m-5 text-center">コメントはありません</h6>
+<% end %>

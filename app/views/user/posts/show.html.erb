@@ -1,12 +1,12 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-3 shadow'>
       <h2>ユーザ情報</h2>
       <%= render 'user/users/info', user: @post.user %>
       <%= render 'user/relationships/follow_info', user: @post.user %>
       <%= link_to "お気に入り一覧", favorites_user_path(@post.user) %>
     </div>
-    <div class='col-md-9'>
+    <div class='col-md-9 shadow'>
       <h2>煙詳細</h2>
       <% if @post.user == current_user %>
         <%= link_to '投稿編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>

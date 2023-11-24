@@ -1,5 +1,6 @@
 <div class='container'>
   <h3>ユーザネーム"<%= @content %>"の検索結果</h3>
+  <% if @records.exists? %>
   <table class='table'>
     <thead>
       <tr>
@@ -11,12 +12,8 @@
     <tbody>
       <% @records.each do |user| %>
         <tr>
-          <td>
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image(50,50) %>
-            <% end %>
-          </td>
-          <td><%= user.name %></td>
+          <td><%= image_tag user.get_profile_image(50,50) %></td>
+          <td><%= link_to user.name, user_path(user) %></td>
           <td>フォロー数: <%= user.followings.count %></td>
           <td>フォロワー数: <%= user.followers.count %></td>
           <td>
@@ -34,4 +31,7 @@
   <div class ="d-flex justify-content-center">
     <%= paginate @records %>
   </div>
+  <% else %>
+    <h4 class ="mt-5 text-center">ユーザがみつかりません</h4>
+  <% end %>
 </div>
