@@ -5,7 +5,10 @@
     </div>
     <div class='col-md-9 shadow'>
       <h2>煙一覧</h2>
-      <%= render "user/posts/index", posts: @posts, search_params: @search_params %>
+      <%= link_to '新しい順', posts_path(search: @search_params.merge(sort: "latest")) %>
+      |<%= link_to '古い順', posts_path(search: @search_params.merge(sort: "old")) %>
+      |<%= link_to '評価の高い順', posts_path(search: @search_params.merge(sort: "star_count")) %>
+      <%= render "user/posts/index", posts: @posts %>
     </div>
   </div>
 </div>

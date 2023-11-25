@@ -2,17 +2,22 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin! 
   def index
     @search_params = post_search_params
-    @post = case
-            when params[:latest]
-              Post.search(@search_params).latest
-            when params[:old]
-              Post.search(@search_params).old
-            when params[:star_count]
-              Post.search(@search_params).star_count
-            else
-              Post.search(@search_params)
-            end
-    @posts = @post.page(params[:page]).per(10)
+    posts = Post.search(@search_params)
+    if params[:search].present?
+      case params[:search][:sort]
+      when "latest"
+        @posts = posts.latest
+      when "old"
+        @posts = posts.old
+      when "star_count"
+        @posts = posts.star_count
+      else
+        @posts = posts
+      end
+    else
+      @posts = posts
+    end
+    @posts = @posts.page(params[:page]).per(10)
   end
   
   def show

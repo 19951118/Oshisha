@@ -67,26 +67,13 @@ class User::PostsController < ApplicationController
   end
 
   def post_search_params
-    params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star, :query, :latest, :old, :star_count)
+    params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star, :latest, :old, :star_count)
   end
 
   def is_post_matching_login_user
     post = Post.find(params[:id])
     unless post.user == current_user
       redirect_to root_path
-    end
-  end
-
-  def sort_posts(posts)
-    case
-    when params[:latest]
-      posts.latest
-    when params[:old]
-      posts.old
-    when params[:star_count]
-      posts.star_count
-    else
-      posts
     end
   end
 

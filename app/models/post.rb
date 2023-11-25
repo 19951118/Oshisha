@@ -2,7 +2,6 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites,dependent: :destroy
   belongs_to :user
-  has_one_attached :post_image
 
   enum flavor_genre: { fruits: 0, sweets: 1, tea: 2, flower: 3, drink: 4, wood: 5, spice: 6, other: 7 }
   enum player: { stores: 0, myself: 1 }

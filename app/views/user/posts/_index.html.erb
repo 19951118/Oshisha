@@ -1,53 +1,43 @@
 
 <% if posts.exists? %>
-<!--<!%= link_to '新しい順', posts_path(latest: "true", query: params[:query]) %>-->
-<!--|<!%= link_to '古い順', posts_path(old: "true", query: params[:query]) %>-->
-<!--|<!%= link_to '評価の高い順', posts_path(star_count: "true", query: params[:query]) %>-->
-<%= link_to '新しい順', posts_path(search: search_params.merge(sort: "latest")) %>
-<%= link_to '古い順', posts_path(search: search_params.merge(sort: "old")) %>
-<%= link_to '評価の高い順', posts_path(search: search_params.merge(sort: "star_count")) %>
-<!--<!%= render "sort",  search_params: @search_params, sort: "new" %>-->
-<!--<!%= render "user/searches/form",  search_params: @search_params %>-->
-<!--<!%= render "user/searches/form",  search_params: @search_params %>-->
-<!--<!%= link_to '新しい順', url_for(params.merge(search: @search_params.merge(latest: "true"))) %>-->
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>タイトル</th>
-      <th>ジャンル</th>
-      <th>製作</th>
-      <th></th>
-      <th></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% posts.each do |post| %>
+  <table class='table table-hover table-inverse'>
+    <thead>
       <tr>
-        <td><%= link_to(post.user) do %>
-          <%= image_tag post.user.get_profile_image(50,50) %>
-          <% end %>
-        </td>
-        <td><%= link_to post.title,post %></td>
-        <td><%= post.flavor_genre_i18n %></td>
-        <td><%= post.player_i18n %></td>
-        <td id="favorite_btn_<%= post.id %>" >
-          <%= render "user/favorites/btn", post: post %>
-        </td>
-        <td id="comment_counter">
-          <%= render "user/post_comments/counter", post: post %>
-        </td>
-        <td>
-          <%= render "user/posts/static_rate", post: post %>
-        </td>
+        <th></th>
+        <th>タイトル</th>
+        <th>ジャンル</th>
+        <th>製作</th>
+        <th></th>
+        <th></th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class ="d-flex justify-content-center">
-  <%= paginate posts %>
-</div>
+    </thead>
+    <tbody>
+      <% posts.each do |post| %>
+        <tr>
+          <td><%= link_to(post.user) do %>
+            <%= image_tag post.user.get_profile_image(50,50) %>
+            <% end %>
+          </td>
+          <td><%= link_to post.title,post %></td>
+          <td><%= post.flavor_genre_i18n %></td>
+          <td><%= post.player_i18n %></td>
+          <td id="favorite_btn_<%= post.id %>" >
+            <%= render "user/favorites/btn", post: post %>
+          </td>
+          <td id="comment_counter">
+            <%= render "user/post_comments/counter", post: post %>
+          </td>
+          <td>
+            <%= render "user/posts/static_rate", post: post %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class ="d-flex justify-content-center">
+    <%= paginate posts %>
+  </div>
 <% else %>
   <h4 class ="mt-5 text-center">煙がみつかりません</h4>
 <% end %>
