@@ -1,8 +1,15 @@
 
 <% if posts.exists? %>
-全件-<%= link_to '新しい順', posts_path(latest: "true") %>
-|<%= link_to '古い順', posts_path(old: "true") %>
-|<%= link_to '評価の高い順', posts_path(star_count: "true") %>
+<!--<!%= link_to '新しい順', posts_path(latest: "true", query: params[:query]) %>-->
+<!--|<!%= link_to '古い順', posts_path(old: "true", query: params[:query]) %>-->
+<!--|<!%= link_to '評価の高い順', posts_path(star_count: "true", query: params[:query]) %>-->
+<%= link_to '新しい順', posts_path(search: search_params.merge(sort: "latest")) %>
+<%= link_to '古い順', posts_path(search: search_params.merge(sort: "old")) %>
+<%= link_to '評価の高い順', posts_path(search: search_params.merge(sort: "star_count")) %>
+<!--<!%= render "sort",  search_params: @search_params, sort: "new" %>-->
+<!--<!%= render "user/searches/form",  search_params: @search_params %>-->
+<!--<!%= render "user/searches/form",  search_params: @search_params %>-->
+<!--<!%= link_to '新しい順', url_for(params.merge(search: @search_params.merge(latest: "true"))) %>-->
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>

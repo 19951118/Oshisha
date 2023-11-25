@@ -17,17 +17,22 @@ class User::PostsController < ApplicationController
 
   def index
     @search_params = post_search_params
-    @post = case
-            when params[:latest]
-              Post.search(@search_params).latest
-            when params[:old]
-              Post.search(@search_params).old
-            when params[:star_count]
-              Post.search(@search_params).star_count
-            else
-              Post.search(@search_params)
-            end
-    @posts = @post.page(params[:page]).per(10)
+    posts = Post.search(@search_params)
+    if params[:search].present?
+      case params[:search][:sort]
+      when "latest"
+        @posts = posts.latest
+      when "old"
+        @posts = posts.old
+      when "star_count"
+        @posts = posts.star_count
+      else
+        @posts = posts
+      end
+    else
+      @posts = posts
+    end
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -62,13 +67,26 @@ class User::PostsController < ApplicationController
   end
 
   def post_search_params
-    params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star)
+    params.fetch(:search, {}).permit(:title, :flavor_genre, :player, :location, :hms_genre, :top_genre, :duration_from, :duration_to, :price_from, :price_to, :flavor_capacity_from, :flavor_capacity_to, :flavor_maker, :smoking_level, :smoking_taste_level, :bottle_option, :nicotine, :star, :query, :latest, :old, :star_count)
   end
 
   def is_post_matching_login_user
     post = Post.find(params[:id])
     unless post.user == current_user
       redirect_to root_path
+    end
+  end
+
+  def sort_posts(posts)
+    case
+    when params[:latest]
+      posts.latest
+    when params[:old]
+      posts.old
+    when params[:star_count]
+      posts.star_count
+    else
+      posts
     end
   end
 
