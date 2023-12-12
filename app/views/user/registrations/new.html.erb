@@ -12,7 +12,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
             </div>
-            <%= f.text_field :name, autocomplete: "off", class:"form-control", placeholder:"ユーザネーム" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "off", class:"form-control", placeholder:"ユーザネーム" %>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -24,7 +24,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
             </div>
-            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "emailアドレス" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "emailアドレス" %>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
