@@ -26,6 +26,8 @@ class User::PostsController < ApplicationController
         @posts = posts.old
       when "star_count"
         @posts = posts.star_count
+      when "favorite_count"
+        @posts = posts.favorite_count
       else
         @posts = posts
       end

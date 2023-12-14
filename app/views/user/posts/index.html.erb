@@ -8,6 +8,7 @@
       <%= link_to '新しい順', posts_path(search: @search_params.merge(sort: "latest")) %>
       |<%= link_to '古い順', posts_path(search: @search_params.merge(sort: "old")) %>
       |<%= link_to '評価の高い順', posts_path(search: @search_params.merge(sort: "star_count")) %>
+      |<%= link_to 'いいねの多い順', posts_path(search: @search_params.merge(sort: "favorite_count")) %>
       <%= render "user/posts/index", posts: @posts %>
     </div>
   </div>
