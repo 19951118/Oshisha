@@ -16,7 +16,8 @@
   bottom     : 0;
   right      : 0;
   opacity    : 0;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   animation  : bgAnime 30s infinite;   /* 4画像 × 各5s = 20s */
 }
 
@@ -68,6 +69,8 @@
   right      : 0;
   opacity    : 1;
   background-size: cover;
+  // background-size: contain;画像の比率をそのままに画面に応じて画像を小さく
+  // background-repeat: no-repeat;要素のなかで画像の繰り返しを防ぐ
   background-image : image-url('hookah8.jpg');
 }
 
