@@ -23,7 +23,7 @@
             <tr>
               <td><%= user.id %></td>
               <td>
-                <%= image_tag user.get_profile_image(50,50) %>
+                <%= image_tag user.get_profile_image(50,50), class: "profile-image" %>
               </td>
               <td><%= link_to user.name, admin_user_path(user) %></td>
               <% if user.is_active == true %>
